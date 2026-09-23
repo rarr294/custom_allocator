@@ -1,4 +1,3 @@
-#include <stddef.h>
 #include "memory.h"
 
 char *slot_alloc(struct slot *ptr){
