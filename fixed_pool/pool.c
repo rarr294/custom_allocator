@@ -23,7 +23,7 @@ char *alloc_slot(struct memory_pool *mem,char *stack){
   return memory;
 }
 
-void free_slot(struct memory_pool *mem,char *stack,char *memoqry){
+void free_slot(struct memory_pool *mem,char *stack,char *memory){
   uint64_t offset = (memory - mem->memory) / mem->slot_size;
 
   *(uint64_t*)(stack + 8 * mem->st_offset) = offset;
