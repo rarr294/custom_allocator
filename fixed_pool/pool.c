@@ -26,6 +26,6 @@ char *alloc_slot(struct memory_pool *mem,char *stack){
 void free_slot(struct memory_pool *mem,char *stack,char *memory){
   uint64_t offset = (memory - mem->memory) / mem->slot_size;
 
-  *(uint64_t*)(stack + 8 * mem->st_offset) = *(uint64_t*)((char*)(&offset));
+  *(uint64_t*)(stack + 8 * mem->st_offset) = offset;
   mem->st_offset += 1;
 }
