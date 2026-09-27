@@ -7,12 +7,12 @@
 
 struct memory_pool{
   char *memory;
-  size_t st_offset;
-  size_t slot_size;
-  size_t total_element;
+  uint64_t st_offset;
+  uint64_t slot_size;
+  uint64_t total_element;
 
-  size_t flag;
-  size_t v_off;
+  uint64_t flag;
+  uint64_t v_off;
 };
 
 char *alloc_slot(struct memory_pool *mem,char *stack);
