@@ -1,4 +1,3 @@
-#include <stdint.h>
 #include "fixed_allocator.h"
 
 char *alloc_slot(struct memory_pool *mem,char *stack){
