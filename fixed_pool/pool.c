@@ -17,7 +17,7 @@ char *alloc_slot(struct memory_pool *mem,char *stack){
   char *memory = (
      mem->memory    +
      mem->slot_size *
-     get_offset(stack,(size_t)(mem->st_offset -= 1))
+     *(uint64_t*)(stack + 8 * (mem->st_offset -= 1))
   );
 
   return memory;
