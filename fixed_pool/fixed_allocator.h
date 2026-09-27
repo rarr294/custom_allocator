@@ -18,10 +18,5 @@ struct memory_pool{
 char *alloc_slot(struct memory_pool *mem,char *stack);
 void free_slot(struct memory_pool *mem,char *stack,char *memory);
 
-size_t get_offset(char *stack,size_t offset){
-  size_t value;
-  memcpy(&value,(stack + sizeof(size_t) * offset),sizeof(size_t));
-  return value;
-}
 
 #endif
