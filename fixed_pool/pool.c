@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "fixed_allocator.h"
 
 char *alloc_slot(struct memory_pool *mem,char *stack){
@@ -23,8 +24,9 @@ char *alloc_slot(struct memory_pool *mem,char *stack){
   return memory;
 }
 
-void free_slot(struct memory_pool *mem,char *stack,char *memory){
-  size_t offset = (memory - mem->memory) / mem->slot_size;
-  memcpy((stack + sizeof(size_t) * mem->st_offset),&offset,sizeof(size_t));
+void free_slot(struct memory_pool *mem,char *stack,char *memoqry){
+  uint64_t offset = (memory - mem->memory) / mem->slot_size;
+
+  *(uint64_t*)(stack + 8 * mem->st_offset) = offset;
   mem->st_offset += 1;
 }
