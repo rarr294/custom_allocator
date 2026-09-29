@@ -1,7 +1,6 @@
+#include <stdio.h>z
+#include <sys/mman.h>
 #include "variable_allocator.h"
-
-struct slot *alloc_variable(struct memory_fixed *mem_fixed,
-                            struct memory_variable *mem_var,uu"
 
 char *alloc_fixed(struct memory_fixed *mem){
 
@@ -80,7 +79,7 @@ struct slot *alloc_variable(struct memory_fixed *mem_fixed,
 
       if(head->size > size){
 
-        struct slot *ptr = alloc_fixed(memory_fixed);
+        struct slot *ptr = (struct slot*)alloc_fixed(mem_fixed);
 
         ptr->flag = 0;
         ptr->size = head->size - size;
@@ -123,7 +122,7 @@ void free_variable(struct memory_fixed *mem,struct slot *nodeL){
     sum += nodeR->size;
     nodeR = nodeR->next;
 
-    free_fixed(mem,tmp);
+    free_fixed(mem,(char*)tmp);
   }
 
   while(nodeL->prev && nodeL->prev->flag == 0){
@@ -133,11 +132,11 @@ void free_variable(struct memory_fixed *mem,struct slot *nodeL){
      sum += nodeL->size;
      nodeL = nodeL->prev;
 
-     free_fixed(mem,tmp);
+     free_fixed(mem,(char*)tmp);
   }
 
   if(exeL == 0 && exeR == 0){
-    node->flag = 0;
+    nodeL->flag = 0;
     return;
   }
 
