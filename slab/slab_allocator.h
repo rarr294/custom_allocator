@@ -36,10 +36,10 @@ void init_slab(struct memory_slab *mem_slab);
 char *alloc_fixed(struct memory_fixed *mem);
 void free_fixed(struct memory_fixed *fixed,char *memory);
 
-char *alloc_slab(struct memory_slab *mem_slab,
+void alloc_slab(struct memory_slab *mem_slab,
                  struct memory_object *mem);
 
-char *free_slab(struct memory_fixed *mem_fixed,
+void free_slab(struct memory_fixed *mem_fixed,
                 struct memory_slab *mem_slab,
                 struct memory_object *mem);
 
