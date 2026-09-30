@@ -1,6 +1,6 @@
 #include "fixed_allocator.h"
 
-char *alloc_slot(struct memory_pool *mem,char *stack){
+char *alloc_fixed(struct memory_fixed *mem){
 
   if(mem->flag){
 
@@ -17,15 +17,15 @@ char *alloc_slot(struct memory_pool *mem,char *stack){
   char *memory = (
      mem->memory    +
      mem->slot_size *
-     *(uint64_t*)(stack + 8 * (mem->st_offset -= 1))
+     *(uint64_t*)(mem->stack + 8 * (mem->st_offset -= 1))
   );
 
   return memory;
 }
 
-void free_slot(struct memory_pool *mem,char *stack,char *memory){
+void free_fixed(struct memory_fixed *mem,char *memory){
   uint64_t offset = (memory - mem->memory) / mem->slot_size;
 
-  *(uint64_t*)(stack + 8 * mem->st_offset) = offset;
+  *(uint64_t*)(mem->stack + 8 * mem->st_offset) = offset;
   mem->st_offset += 1;
 }
