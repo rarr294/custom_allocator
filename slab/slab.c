@@ -55,7 +55,7 @@ void free_slab(struct memory_fixed *mem_fixed,
                struct memory_object *mem){
   
   if(mem_slab->slab_config == 2){
-     free_fixed(&free_list2[lookup(mem->size)]);
+     free_fixed(&free_list2[lookup(mem->size)],mem->memory);
      return;
   }
 }
