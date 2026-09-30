@@ -41,12 +41,11 @@ void lookup(uint64_t num){
   return idx + 1;
 }
 
-char *alloc_slab(struct memory_slab *mem_slab,
+void alloc_slab(struct memory_slab *mem_slab,
                  struct memory_object *mem){
 
   if(mem_slab->slab_config == 2){
-     char offset = lookup(mem->size);
-     char *memory = alloc_fixed(&free_list2[offset]);
-     return memory;
+     mem->memory = alloc_fixed(&free_list2[lookup(mem->size)]);
+     return;
   }
 }
