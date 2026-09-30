@@ -15,7 +15,7 @@ struct memory_fixed{
   uint64_t v_off;
 };
 
-char *alloc_slot(struct memory_pool *mem);
-void free_slot(struct memory_pool *mem,char *memory);
+char *alloc_fixed(struct memory_fixed *mem);
+void free_fixed(struct memory_fixed *fixed,char *memory);
 
 #endif
